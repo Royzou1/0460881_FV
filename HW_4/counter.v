@@ -23,37 +23,34 @@ always @(posedge clk or posedge rst) begin
     end
 end
 
-//Verification
-//seif_1
+// Verification
+// seif_1
 
-property start_over1;
-    @(posedge clk) start_over |=> (!c1);
+property start_over_combined;
+    @(posedge clk) start_over |=> (!c1 && !c2);
 endproperty
+assert property(start_over_combined);
 
-property start_over2;
-    @(posedge clk) start_over |=> (!c2);
-endproperty
-
-assert property start_over1 && start_over2;
-                    
-//seif 2
+// seif 2
 
 property inc1;
-    @(posedge clk) (!start_over && direction1 && en1) |=> ($past(c1) + 1 == c1);
+    @(posedge clk) (!start_over && direction1 && en1) |=>
+                   ($past(c1) + 1 == c1);
 endproperty
 
 property inc2;
-    @(posedge clk) (!start_over && direction2 && en2) |=> ($past(c2) + 1 == c2);
+    @(posedge clk) (!start_over && direction2 && en2) |=> 
+                   ($past(c2) + 1 == c2);
 endproperty
 
-assert property inc1 && inc2;
+assert property(inc1);
+assert property(inc2);
 
-//seif 3
+// seif 3
 
 property sequence1;
     @(posedge clk) (c1 < c2) ##1 (c1 > c2) ##1 (c1 < c2);
 endproperty
-
-cover property sequence1;         
+cover property(sequence1);
 
 endmodule
