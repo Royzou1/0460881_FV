@@ -43,8 +43,7 @@ property inc2;
                    ($past(c2) + 1 == c2);
 endproperty
 
-assert property(inc1);
-assert property(inc2);
+assert property(inc1 && inc2);
 
 // seif 3
 
