@@ -47,6 +47,7 @@ logic[4:0] counter;
 always @ (posedge clk) begin
   if (~rst)
     counter <= 0;
+  else if (counter > 30)
   else
     counter <= counter + 1;
 end
