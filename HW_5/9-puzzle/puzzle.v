@@ -43,6 +43,14 @@ always @ (posedge clk) begin
   end
 end
 
+logic[4:0] counter;
+always @ (posedge clk) begin
+  if (~rst)
+    counter <= 0;
+  else
+    counter <= counter + 1;
+end
+
 wire solution = cells[0][0] == 1 &
                 cells[0][1] == 2 &
                 cells[0][2] == 3 &
@@ -54,5 +62,10 @@ wire solution = cells[0][0] == 1 &
                 cells[2][2] == 0;
 
 c: cover property (@(posedge clk) solution);
-
+timing26: cover property (@(posedge clk) solution && counter < 27);
+timing25: cover property (@(posedge clk) solution && counter < 26);
+timing24: cover property (@(posedge clk) solution && counter < 25);
+timing23: cover property (@(posedge clk) solution && counter < 24);
+timing22: cover property (@(posedge clk) solution && counter < 23);
+timing21: cover property (@(posedge clk) solution && counter < 22);
 endmodule
