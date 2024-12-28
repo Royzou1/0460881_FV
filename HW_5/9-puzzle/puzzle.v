@@ -45,11 +45,12 @@ end
 
 logic[4:0] counter;
 always @ (posedge clk) begin
-  if (~rst)
+  if (~rst) begin
     counter <= 0;
-  else if (counter > 30)
-  else
+  end else if (counter > 30) begin
+  end else begin
     counter <= counter + 1;
+    end
 end
 
 wire solution = cells[0][0] == 1 &
