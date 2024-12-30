@@ -55,12 +55,71 @@ wire solution = cells[0][0] == 1 &
                 cells[2][1] == 8 &
                 cells[2][2] == 0;
 
+wire step1 = cells[0][0] == 8 &
+                cells[0][1] == 7 &
+                cells[0][2] == 0 &
+                cells[1][0] == 6 &
+                cells[1][1] == 5 &
+                cells[1][2] == 4 &
+                cells[2][0] == 3 &
+                cells[2][1] == 2 &
+                cells[2][2] == 1;
 
+wire step2 = cells[0][0] == 8 &
+                cells[0][1] == 7 &
+                cells[0][2] == 4 &
+                cells[1][0] == 6 &
+                cells[1][1] == 5 &
+                cells[1][2] == 1 &
+                cells[2][0] == 0 &
+                cells[2][1] == 3 &
+                cells[2][2] == 2;
+
+wire step3 = cells[0][0] == 7 &
+                cells[0][1] == 4 &
+                cells[0][2] == 0 &
+                cells[1][0] == 8 &
+                cells[1][1] == 5 &
+                cells[1][2] == 1 &
+                cells[2][0] == 6 &
+                cells[2][1] == 3 &
+                cells[2][2] == 2;
+
+wire step4 = cells[0][0] == 7 &
+                cells[0][1] == 4 &
+                cells[0][2] == 1 &
+                cells[1][0] == 8 &
+                cells[1][1] == 5 &
+                cells[1][2] == 2 &
+                cells[2][0] == 0 &
+                cells[2][1] == 6 &
+                cells[2][2] == 3;
+
+wire step5 = cells[0][0] == 4 &
+                cells[0][1] == 1 &
+                cells[0][2] == 0 &
+                cells[1][0] == 7 &
+                cells[1][1] == 5 &
+                cells[1][2] == 2 &
+                cells[2][0] == 8 &
+                cells[2][1] == 6 &
+                cells[2][2] == 3;
+
+wire step6 = cells[0][0] == 4 &
+                cells[0][1] == 1 &
+                cells[0][2] == 2 &
+                cells[1][0] == 7 &
+                cells[1][1] == 5 &
+                cells[1][2] == 3 &
+                cells[2][0] == 0 &
+                cells[2][1] == 8 &
+                cells[2][2] == 6;
 end
 c: cover property (@(posedge clk) solution);
-no_going_back: assume property (@(posedge clk) 
-                (direction==2'b00 |=> direction!= 2'b01) &&
-                (direction==2'b01 |=> direction!= 2'b00) &&
-                (direction==2'b11 |=> direction!= 2'b10) &&
-                (direction==2'b10 |=> direction!= 2'b11));
+c_step1: cover property (@(posedge clk) step1);
+c_step2: cover property (@(posedge clk) step2);
+c_step3: cover property (@(posedge clk) step3);
+c_step4: cover property (@(posedge clk) step4);
+c_step5: cover property (@(posedge clk) step5);
+c_step6: cover property (@(posedge clk) step6);
 endmodule
