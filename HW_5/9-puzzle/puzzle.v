@@ -55,6 +55,12 @@ wire solution = cells[0][0] == 1 &
                 cells[2][1] == 8 &
                 cells[2][2] == 0;
 
-c: cover property (@(posedge clk) solution);
 
+end
+c: cover property (@(posedge clk) solution);
+no_going_back: assume property (@(posedge clk) 
+                (direction==2'b00 |=> direction!= 2'b01) &&
+                (direction==2'b01 |=> direction!= 2'b00) &&
+                (direction==2'b11 |=> direction!= 2'b10) &&
+                (direction==2'b10 |=> direction!= 2'b11));
 endmodule
