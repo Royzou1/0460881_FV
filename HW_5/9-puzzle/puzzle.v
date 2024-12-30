@@ -114,7 +114,8 @@ wire step6 = cells[0][0] == 4 &
                 cells[2][0] == 0 &
                 cells[2][1] == 8 &
                 cells[2][2] == 6;
-end
+
+
 c: cover property (@(posedge clk) solution);
 c_step1: cover property (@(posedge clk) step1);
 c_step2: cover property (@(posedge clk) step2);
