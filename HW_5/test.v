@@ -71,7 +71,7 @@ q_shadow == q & x_shadow == x & y_shadow == y;
 
 
 liveness: assert property (@(posedge clk) s_eventually(always(q)));
-safety: assert property
-(@(posedge clk) !(loop_closed && q_was_false_on_loop));
+safety: assert property (@(posedge clk) 
+                        !(loop_closed && q_was_false_on_loop));
 
 endmodule
