@@ -1,5 +1,5 @@
 # Analyze design and property files
-analyze -sv09 -f ibex_core.f load_store.sv
+analyze -sv09 -f ibex_core.f load_store.sve
 
 # Elaborate design and properties
 elaborate -top ibex_top \

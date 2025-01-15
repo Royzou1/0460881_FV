@@ -18,3 +18,6 @@ endmodule
 
 // Bind the above module to the ibex_load_store_unit module.
 bind ibex_load_store_unit load_store_prop load_store_prop_i(clk_i, data_req_o, data_gnt_i, data_we_o);
+
+assert property (@(posedge clk) data_req_o && !data_gnt_i) |=> 
+                                (data_we_o == $past(data_we_o));
