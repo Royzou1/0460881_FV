@@ -8,6 +8,6 @@ module hw7 (
 );
 
 assume property (@(posedge clk) en |=> s_eventually(ok));
-assert property (@(posedge clk) en |=> (1’b1 s_until ok));
+assert property (@(posedge clk) en |=> (1'b1 s_until ok));
 
 
