@@ -4,7 +4,7 @@ module hw7 (
     input clk,
     input rst,
     input en,
-    input ok,
+    input ok
 );
 
 assume property (@(posedge clk) en |=> s_eventually(ok));
