@@ -10,4 +10,5 @@ reset ~rst
 clock clk
 
 check_sec -setup
-check_sec -interface
+check_sec -interface -unmapped -spec
+check_sec -interface -unmapped -imp
